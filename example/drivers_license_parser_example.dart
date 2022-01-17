@@ -1,0 +1,40 @@
+import 'package:drivers_license_parser/drivers_license_parser.dart';
+
+void main() {
+  final exampleLicenseData = '''@
+ANSI 636026080102DL00410275ZA03160015DLDAQD01899533
+DCSDOE
+DDEN
+DACJOHN
+DDFN
+DADC
+DDGN
+DCAD
+DCBNONE
+DCDM
+DBD11082016
+DBB11151984
+DBA10282050
+DBC1
+DAU072 in
+DAYBLU
+DAG1234 W EVERGREEN TER
+DAIGLENDALE
+DAJAZ
+DAK853089577  
+DCF5684B9913G1684D5
+DCGUSA
+DAW220
+DAZBRO
+DCK16313AZ0068147120301
+DDAN
+DDB02142014
+DDK1
+ZAZAAN
+ZAB
+ZAC
+''';
+
+  final license = LicenseParser.parse(exampleLicenseData);
+  print(license.customerId);
+}
