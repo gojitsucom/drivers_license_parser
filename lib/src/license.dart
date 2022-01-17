@@ -1,3 +1,5 @@
+import 'package:drivers_license_parser/src/postal_code.dart';
+
 import 'enum.dart';
 
 /// Represents the behavior of a parsed license
@@ -39,7 +41,7 @@ class License {
   final String? state;
 
   /// The license holder's postal code
-  final String? postalCode;
+  final PostalCode? postalCode;
 
   /// The license holder's customer Id (e.g. Driver License Number)
   final String? customerId;

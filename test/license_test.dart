@@ -1,4 +1,5 @@
 import 'package:drivers_license_parser/src/license.dart';
+import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -29,7 +30,7 @@ void main() {
             streetAddress: "SOMETHING",
             city: "SOMETHING",
             state: "CA",
-            postalCode: "SOMETHING",
+            postalCode: PostalCode(postalCode: "12345", extension: "6789"),
             documentId: "SOMETHING",
           );
           expect(sut.isAcceptable(), isTrue);

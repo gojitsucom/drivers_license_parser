@@ -1,5 +1,6 @@
 import 'package:drivers_license_parser/src/field_parser.dart';
 import 'package:drivers_license_parser/src/license.dart';
+import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:drivers_license_parser/src/regex.dart';
 
 import 'version_eight_parser.dart';
@@ -32,7 +33,7 @@ class LicenseParser {
       streetAddress: fieldParser.parseString("streetAddress"),
       city: fieldParser.parseString("city"),
       state: fieldParser.parseString("state"),
-      postalCode: fieldParser.parseString("postalCode"),
+      postalCode: PostalCode.parse(fieldParser.parseString("postalCode")),
       customerId: fieldParser.parseString("customerId"),
       documentId: fieldParser.parseString("documentId"),
       country: fieldParser.parseCountry(),
