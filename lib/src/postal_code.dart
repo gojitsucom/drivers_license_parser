@@ -4,7 +4,6 @@ class PostalCode {
 
   PostalCode({this.postalCode, this.extension});
 
-
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -15,7 +14,6 @@ class PostalCode {
 
   @override
   int get hashCode => postalCode.hashCode ^ extension.hashCode;
-
 
   @override
   String toString() {
