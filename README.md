@@ -1,5 +1,5 @@
 # LicenseParser
-Note: This is a Dart port of https://github.com/ksoftllc/license-parser
+**Note: This is a Dart port of https://github.com/ksoftllc/license-parser**
 
 Easily parse the information within PDF-417 barcodes found on the back of
 US and Canadian driver's licenses adhering to the AAMVA Version 8. This library also supports all older standards as well.
@@ -10,7 +10,8 @@ standard.
 ```dart
 
 // First get the PDF-417 barcode data by scanning the barcode on the license
-final pdf417Data = MyFakeLicenseScanner.scan();
+// this step can be done any way you like and is not provided by this library
+final pdf417Data = myLicenseScannerUtility.scan();
 
 // Parse the data with the LicenseParser
 final parsedLicense = LicenseParser.parse(pdf417Data);
