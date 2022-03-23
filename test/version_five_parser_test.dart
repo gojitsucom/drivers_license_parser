@@ -2,6 +2,7 @@
 
 import 'package:drivers_license_parser/drivers_license_parser.dart';
 import 'package:drivers_license_parser/src/license_date_parser.dart';
+import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -27,7 +28,11 @@ void main() {
       expect(result.streetAddress, "454 APRICOT RD");
       expect(result.city, "LITTLE ROCK");
       expect(result.state, "AR");
-      expect(result.postalCode, "11111 2222");
+      expect(
+          result.postalCode,
+          PostalCode(
+            postalCode: "11111 2222",
+          )); // "11111 2222"
       expect(result.customerId, "123456789");
       expect(result.documentId, isNull);
       expect(result.country, IssuingCountry.unitedStates);

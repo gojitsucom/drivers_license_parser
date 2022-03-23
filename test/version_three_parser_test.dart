@@ -2,6 +2,7 @@
 
 import 'package:drivers_license_parser/drivers_license_parser.dart';
 import 'package:drivers_license_parser/src/license_date_parser.dart';
+import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -12,11 +13,11 @@ void main() {
           "ANSI 636012030001DL00000367DLDCAG2  \n" +
           "DCBX\n" +
           "DCDNONE\n" +
-          "DBA20250425\n" +
+          "DBA04252025\n" +
           "DCSPUBLIC,\n" +
           "DCTJOHN\n" +
-          "DBD20150910\n" +
-          "DBB19740328\n" +
+          "DBD09102015\n" +
+          "DBB03281974\n" +
           "DBC1\n" +
           "DAYNONE\n" +
           "DAU170 cm\n" +
@@ -36,7 +37,7 @@ void main() {
       expect(result.firstName, "JOHN");
       expect(result.lastName, "PUBLIC");
       expect(result.streetAddress, "789 E OAK AVE");
-      expect(result.postalCode, "A5K 4X9");
+      expect(result.postalCode, PostalCode(postalCode: "A5K 4X9"));//"A5K 4X9"
       //"20250425"
       expect(result.expirationDate, DateTime(2025, 4, 25));
       //"19740328"
@@ -50,5 +51,5 @@ void main() {
 }
 
 DateTime? formattedDate(String date) {
-  return LicenseDateParser.yearMonthDay.parse(date);
+  return LicenseDateParser.monthDayYear.parse(date);
 }

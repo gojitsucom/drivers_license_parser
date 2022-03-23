@@ -20,9 +20,15 @@ class VersionOneFieldMapper extends FieldMapper {
 }
 
 class VersionOneFieldParser extends FieldParser {
-  VersionOneFieldParser(String data)
-      : super(data: data, fieldMapper: VersionOneFieldMapper());
+  VersionOneFieldParser(String data,
+      {required DateFormatLocale dateFormatLocale})
+      : super(
+          data: data,
+          fieldMapper: VersionOneFieldMapper(),
+          dateFormatLocale: dateFormatLocale,
+        );
 
+  /// Version 1 of the spec calls for CCYYMMDD for all machine-readable dates
   @override
   LicenseDateParser licenseDateParser = LicenseDateParser.yearMonthDay;
 

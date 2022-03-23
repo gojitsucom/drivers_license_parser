@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_adjacent_string_concatenation
 
 import 'package:drivers_license_parser/drivers_license_parser.dart';
+import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -345,7 +346,12 @@ void main() {
         test("should reveal the postal code", () {
           final result = LicenseParser.parse(validLicenseData());
 
-          expect(result.postalCode, "902230000");
+          expect(
+              result.postalCode,
+              PostalCode(
+                postalCode: "90223",
+                extension: "0000",
+              )); //"902230000"
         });
       });
     });

@@ -1,6 +1,5 @@
 import 'field_mapper.dart';
 import 'field_parser.dart';
-import 'license_date_parser.dart';
 
 class VersionThreeFieldMapper extends FieldMapper {
   static const versionThreeFieldMapperOverrides = {
@@ -15,9 +14,11 @@ class VersionThreeFieldMapper extends FieldMapper {
 }
 
 class VersionThreeFieldParser extends FieldParser {
-  VersionThreeFieldParser(String data)
-      : super(data: data, fieldMapper: VersionThreeFieldMapper());
-
-  @override
-  LicenseDateParser licenseDateParser = LicenseDateParser.yearMonthDay;
+  VersionThreeFieldParser(String data,
+      {required DateFormatLocale dateFormatLocale})
+      : super(
+          data: data,
+          fieldMapper: VersionThreeFieldMapper(),
+          dateFormatLocale: dateFormatLocale,
+        );
 }

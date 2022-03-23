@@ -4,5 +4,5 @@
 library drivers_license_parser;
 
 export 'src/enum.dart';
-export 'src/license_parser.dart';
 export 'src/license.dart';
+export 'src/license_parser.dart';

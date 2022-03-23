@@ -1,11 +1,7 @@
 import 'package:drivers_license_parser/src/field_parser.dart';
 import 'package:drivers_license_parser/src/license.dart';
-import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:drivers_license_parser/src/regex.dart';
 
-import 'version_eight_parser.dart';
-import 'version_five_parser.dart';
-import 'version_four_parser.dart';
 import 'version_one_field_parser.dart';
 import 'version_three_parser.dart';
 import 'version_two_parser.dart';
@@ -17,8 +13,12 @@ class LicenseParser {
   ///
   ///   - Returns: A ParsedLicense with all available parsed fields
   ///
-  static License parse(String data) {
-    final fieldParser = versionBasedFieldParsing(data: data);
+  static License parse(String data,
+      {DateFormatLocale dateFormatLocale = DateFormatLocale.us}) {
+    final fieldParser = versionBasedFieldParsing(
+      data: data,
+      dateFormatLocale: dateFormatLocale,
+    );
 
     return License(
       firstName: fieldParser.parseFirstName(),
@@ -33,7 +33,7 @@ class LicenseParser {
       streetAddress: fieldParser.parseString("streetAddress"),
       city: fieldParser.parseString("city"),
       state: fieldParser.parseString("state"),
-      postalCode: PostalCode.parse(fieldParser.parseString("postalCode")),
+      postalCode: fieldParser.parsePostalCode(),
       customerId: fieldParser.parseString("customerId"),
       documentId: fieldParser.parseString("documentId"),
       country: fieldParser.parseCountry(),
@@ -60,23 +60,18 @@ class LicenseParser {
 
   static FieldParser versionBasedFieldParsing({
     required String data,
+    required DateFormatLocale dateFormatLocale,
   }) {
     final version = parseVersion(data);
     switch (version) {
       case "01":
-        return VersionOneFieldParser(data);
+        return VersionOneFieldParser(data, dateFormatLocale: dateFormatLocale);
       case "02":
-        return VersionTwoFieldParser(data);
+        return VersionTwoFieldParser(data, dateFormatLocale: dateFormatLocale);
       case "03":
-        return VersionThreeFieldParser(data);
-      case "04":
-        return VersionFourFieldParser(data);
-      case "05":
-        return VersionFiveFieldParser(data);
-      case "08":
-        return VersionEightFieldParser(data);
+        return VersionThreeFieldParser(data, dateFormatLocale: dateFormatLocale);
       default:
-        return FieldParser(data: data);
+        return FieldParser(data: data, dateFormatLocale: dateFormatLocale);
     }
   }
 

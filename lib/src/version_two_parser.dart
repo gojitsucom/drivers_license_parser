@@ -14,9 +14,10 @@ class VersionTwoFieldMapper extends FieldMapper {
 }
 
 class VersionTwoFieldParser extends FieldParser {
-  VersionTwoFieldParser(String data)
+  VersionTwoFieldParser(String data, {required DateFormatLocale dateFormatLocale})
       : super(
           data: data,
           fieldMapper: VersionTwoFieldMapper(),
+          dateFormatLocale: dateFormatLocale,
         );
 }
