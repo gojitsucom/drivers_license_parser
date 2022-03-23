@@ -1,9 +1,15 @@
+import 'package:drivers_license_parser/drivers_license_parser.dart';
 import 'package:drivers_license_parser/src/field_mapper.dart';
 import 'package:drivers_license_parser/src/license_date_parser.dart';
 import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:drivers_license_parser/src/regex.dart';
 
 import 'enum.dart';
+
+enum DateFormatLocale {
+  us,
+  canadian,
+}
 
 class FieldParser {
   /// Used to convert cm to inches for height calculations
@@ -15,13 +21,19 @@ class FieldParser {
   /// The raw data from an AAMVA spec adhering PDF-417 barcode
   final String data;
 
+  final DateFormatLocale dateFormatLocale;
+
   ///
   ///   Initializes a new Field Parser
   ///   - Parameters:
   ///   - data: The AAMVA spec adhering PDF-417 barcode data
   ///   - fieldMapper: A FieldMapping object
   ///   - Returns: An initialized Field Parser
-  FieldParser({required this.data, this.fieldMapper = const FieldMapper()});
+  FieldParser({
+    required this.data,
+    this.fieldMapper = const FieldMapper(),
+    required this.dateFormatLocale,
+  });
 
   ///
   ///  Parse a string out of the raw data
@@ -63,7 +75,16 @@ class FieldParser {
     return licenseDateParser.parse(dateString);
   }
 
-  LicenseDateParser get licenseDateParser => LicenseDateParser.monthDayYear;
+  /// All specs besides version 1 call for locale-specific date parsing.
+  /// US: MMDDCCYY
+  /// CAN: CCYYMMDD
+  LicenseDateParser get licenseDateParser {
+    if (dateFormatLocale == DateFormatLocale.canadian) {
+      return LicenseDateParser.yearMonthDay;
+    } else {
+      return LicenseDateParser.monthDayYear;
+    }
+  }
 
   ///
   /// Parse the AAMVA last name out of the raw data

@@ -14,7 +14,11 @@ class VersionThreeFieldMapper extends FieldMapper {
 }
 
 class VersionThreeFieldParser extends FieldParser {
-  VersionThreeFieldParser(String data)
-      : super(data: data, fieldMapper: VersionThreeFieldMapper());
-
+  VersionThreeFieldParser(String data,
+      {required DateFormatLocale dateFormatLocale})
+      : super(
+          data: data,
+          fieldMapper: VersionThreeFieldMapper(),
+          dateFormatLocale: dateFormatLocale,
+        );
 }

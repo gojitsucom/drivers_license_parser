@@ -13,8 +13,12 @@ class LicenseParser {
   ///
   ///   - Returns: A ParsedLicense with all available parsed fields
   ///
-  static License parse(String data) {
-    final fieldParser = versionBasedFieldParsing(data: data);
+  static License parse(String data,
+      {DateFormatLocale dateFormatLocale = DateFormatLocale.us}) {
+    final fieldParser = versionBasedFieldParsing(
+      data: data,
+      dateFormatLocale: dateFormatLocale,
+    );
 
     return License(
       firstName: fieldParser.parseFirstName(),
@@ -56,17 +60,18 @@ class LicenseParser {
 
   static FieldParser versionBasedFieldParsing({
     required String data,
+    required DateFormatLocale dateFormatLocale,
   }) {
     final version = parseVersion(data);
     switch (version) {
       case "01":
-        return VersionOneFieldParser(data);
+        return VersionOneFieldParser(data, dateFormatLocale: dateFormatLocale);
       case "02":
-        return VersionTwoFieldParser(data);
+        return VersionTwoFieldParser(data, dateFormatLocale: dateFormatLocale);
       case "03":
-        return VersionThreeFieldParser(data);
+        return VersionThreeFieldParser(data, dateFormatLocale: dateFormatLocale);
       default:
-        return FieldParser(data: data);
+        return FieldParser(data: data, dateFormatLocale: dateFormatLocale);
     }
   }
 
