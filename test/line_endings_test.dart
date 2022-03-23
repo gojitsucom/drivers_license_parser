@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_adjacent_string_concatenation
 
 import 'package:drivers_license_parser/drivers_license_parser.dart';
+import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -53,7 +54,7 @@ void main() {
         expect(result.height, 69);
         expect(result.city, "ANYTOWN");
         expect(result.state, "CA");
-        expect(result.postalCode, "902230000");
+        expect(result.postalCode, PostalCode(postalCode: "90223", extension: "0000"));//"902230000"
         expect(result.hairColor, HairColor.brown);
         expect(result.country, IssuingCountry.unitedStates);
         expect(result.customerId, "D12345678");

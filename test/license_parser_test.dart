@@ -36,6 +36,37 @@ void main() {
         final result = LicenseParser.parse(rawData);
         expect(result.pdf417, rawData);
       });
+
+      test("parses my license", () {
+        final rawData = "@\n" +
+        "\n" +
+        "ANSI 636001030302DL00410279ZN03200070DLDCAD\n" +
+        "DCBNONE\n" +
+        "DCDNONE\n" +
+        "DBA10262023\n" +
+        "DCSMUNOZ\n" +
+        "DCTROSALIA\n" +
+        "DBD11032018\n" +
+        "DBB10261992\n" +
+        "DBC2\n" +
+        "DAYBRO\n" +
+        "DAU502\n" +
+        "DAG2400 PACIFIC ST 1\n" +
+        "DAIBROOKLYN\n" +
+        "DAJNY\n" +
+        "DAK112330000\n" +
+        "DAQ762877257\n" +
+        "DCFZ6CYT5M618\n" +
+        "DCGUSA\n" +
+        "DDAN\n" +
+        "DDB09282017\n" +
+        "DDD0\n" +
+        "ZNZNAMUNOZ@ROSALIA\n" +
+        "ZNBb6Fj:%5VgcG<Z2<>cfn6H'p+th./8g@e!99!:e\h";
+
+        final result = LicenseParser.parse(rawData);
+        expect(result.pdf417, rawData);
+      });
     });
   });
 }

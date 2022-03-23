@@ -1,5 +1,6 @@
 import 'package:drivers_license_parser/src/field_mapper.dart';
 import 'package:drivers_license_parser/src/license_date_parser.dart';
+import 'package:drivers_license_parser/src/postal_code.dart';
 import 'package:drivers_license_parser/src/regex.dart';
 
 import 'enum.dart';
@@ -298,6 +299,22 @@ class FieldParser {
       return (height * FieldParser.inchesPerCentimeter).roundToDouble();
     } else {
       return height;
+    }
+  }
+
+  /// postal codes can include both the base 5-digit code and the 4-digit routing code
+  /// this splits them up and makes it easy to work with
+  PostalCode? parsePostalCode() {
+    final postalCodeString = parseString("postalCode");
+    if (postalCodeString != null) {
+      if (postalCodeString.length == 9) {
+        return PostalCode(
+          postalCode: postalCodeString.substring(0, 5),
+          extension: postalCodeString.substring(5, 9),
+        );
+      } else {
+        return PostalCode(postalCode: postalCodeString);
+      }
     }
   }
 }
