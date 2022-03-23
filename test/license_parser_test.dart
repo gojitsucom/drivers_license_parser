@@ -62,6 +62,7 @@ void main() {
         "DDB09282017\n" +
         "DDD0\n" +
         "ZNZNAMUNOZ@ROSALIA\n" +
+        // ignore: unnecessary_string_escapes
         "ZNBb6Fj:%5VgcG<Z2<>cfn6H'p+th./8g@e!99!:e\h";
 
         final result = LicenseParser.parse(rawData);
