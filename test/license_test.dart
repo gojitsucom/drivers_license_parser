@@ -7,19 +7,26 @@ void main() {
     group("Acceptability", () {
       group("when the license has yet to be issued", () {
         test("should not be acceptable", () {
-          var sut = License(issueDate: DateTime(2900, 1, 1));
+          var sut = License(
+            issueDate: DateTime(2900, 1, 1),
+            driversLicenseNumber: "any",
+          );
           expect(sut.isAcceptable(), isFalse);
         });
       });
       group("when the license is expired", () {
         test("should not be acceptable", () {
-          var sut = License(expirationDate: DateTime(1900, 1, 1));
+          var sut = License(
+            expirationDate: DateTime(1900, 1, 1),
+            driversLicenseNumber: "any",
+          );
           expect(sut.isAcceptable(), isFalse);
         });
       });
       group("when all essential fields are present", () {
         test("should be acceptable", () {
           var sut = License(
+            driversLicenseNumber: "any",
             expirationDate: DateTime(3000, 1, 1),
             lastName: "SOMETHING",
             firstName: "SOMETHING",

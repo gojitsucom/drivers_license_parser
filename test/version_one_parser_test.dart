@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 
 void main() {
   group(
-      "Parsing Data Adhereing to the 2000 AAMVA DL/ID Card Design Standard (aka version 1)",
+      "Parsing Data Adhering to the 2000 AAMVA DL/ID Card Design Standard (aka version 1)",
       () {
     group("Parsing the AAMVA Document Standard", () {
       group("when the version is present", () {
@@ -295,19 +295,41 @@ void main() {
     group("Parsing the Second Street Address Line", () {
       group("when the street address supplement is present", () {
         test("should reveal the supplemental street address", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.streetAddressSupplement, "APT #4A");
         });
       });
     });
 
-    group("Parsing the Customer Id Number", () {
-      group("when the customer id number is present", () {
-        test("should reveal the customer id number", () {
-          final result = LicenseParser.parse(validLicenseData());
+    group("Parsing the Drivers License Number (customerId/uniqueCustomerId)", () {
+      group("when the unique customer id (DBJ) number is present", () {
+        test("should parse only the uniqueCustomerId and use it for driversLicenseNumber", () {
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+
+          expect(result.uniqueCustomerId, "D87654321");
+          expect(result.customerId, null);
+          expect(result.driversLicenseNumber, "D87654321");
+        });
+      });
+
+      group("when the customerId is present", () {
+        test("should parse only customerId and use it for the driversLicenseNumber", () {
+          final result = LicenseParser.parse(validLicenseDataWithCustomerId());
 
           expect(result.customerId, "D12345678");
+          expect(result.uniqueCustomerId, null);
+          expect(result.driversLicenseNumber, "D12345678");
+        });
+      });
+
+      group("when both the customerId and the uniqueCustomerId are present", () {
+        test("should parse both the customerId and uniqueCustomerId but only use customerId for the driversLicenseNumber", () {
+          final result = LicenseParser.parse(validLicenseDataWithCustomerIdAndUniqueCustomerId());
+
+          expect(result.customerId, "D12345678");
+          expect(result.uniqueCustomerId, "D87654321");
+          expect(result.driversLicenseNumber, "D12345678");
         });
       });
     });
@@ -315,7 +337,7 @@ void main() {
     group("Parsing the Postal Code", () {
       group("when the postal code is present", () {
         test("should reveal the postal code", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.postalCode, PostalCode(postalCode: "90223"));//"90223"
         });
@@ -325,7 +347,7 @@ void main() {
     group("Parsing the State", () {
       group("when the state is present", () {
         test("should reveal the state", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.state, "CA");
         });
@@ -335,7 +357,7 @@ void main() {
     group("Parsing the City", () {
       group("when the city is present", () {
         test("should reveal the city", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.city, "ANYTOWN");
         });
@@ -345,7 +367,7 @@ void main() {
     group("Parsing the Street Address", () {
       group("when the street address is present", () {
         test("should reveal the street address", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.streetAddress, "789 E OAK ST");
         });
@@ -355,7 +377,7 @@ void main() {
     group("Parsing Height", () {
       group("when the height is present", () {
         test("should reveal the height in inches", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.height, 69);
         });
@@ -466,7 +488,7 @@ void main() {
     group("Parsing the first name", () {
       group("when the first name is present", () {
         test("should reveal the first name", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.firstName, "JOHN");
         });
@@ -498,7 +520,7 @@ void main() {
     group("Parsing the last name", () {
       group("when the last name is present", () {
         test("should reveal the last name", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.lastName, "PUBLIC");
         });
@@ -508,7 +530,7 @@ void main() {
     group("Parsing the middle name", () {
       group("when the middle name is present", () {
         test("should reveal the middle name", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.middleName, "QUINCY");
         });
@@ -540,7 +562,7 @@ void main() {
     group("Parsing the expiration date", () {
       group("when the expiration date is present", () {
         test("should reveal the expiration date", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
           //"20350131"
           final expectedDate = DateTime(2035, 1, 31);
 
@@ -556,7 +578,7 @@ void main() {
         });
         group("when the expiration date is in the future", () {
           test("should not be expired", () {
-            final result = LicenseParser.parse(validLicenseData());
+            final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
             expect(result.isExpired(), isFalse);
           });
@@ -567,7 +589,7 @@ void main() {
     group("Parsing the issue date", () {
       group("when the issue date is present", () {
         test("should reveal the issue date", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
           //"10032013"
           final expectedDate = DateTime(2013, 10, 3);
 
@@ -594,7 +616,7 @@ void main() {
     group("Parsing the date of birth", () {
       group("when the date of birth is present", () {
         test("should reveal the date of birth", () {
-          final result = LicenseParser.parse(validLicenseData());
+          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
           //"19700115"
           final expectedDate = DateTime(1970, 1, 15);
 
@@ -605,10 +627,67 @@ void main() {
   });
 }
 
-String validLicenseData() {
+String validLicenseDataWithUniqueCustomerId() {
   final rawData = "@\n" +
       "\n" +
-      "ANSI 636026010102DL00410288ZA03290015DLDBJD12345678\n" +
+      "ANSI 636026010102DL00410288ZA03290015DLDBJD87654321\n" +
+      "DABPUBLIC\n" +
+      "DACJOHN\n" +
+      "DADQUINCY\n" +
+      "DAG789 E OAK ST\n" +
+      "DAIANYTOWN\n" +
+      "DAHAPT #4A\n" +
+      "DAJCA\n" +
+      "DAK90223\n" +
+      "DBB19700115\n" +
+      "DBA20350131\n" +
+      "DAU509\n" +
+      "DAW180\n" +
+      "DAZBR\n" +
+      "DAYGRN\n" +
+      "DBC1\n" +
+      "DBHN\n" +
+      "DARD\n" +
+      "DBD20131003\n" +
+      "DBE2013-10-03 00.00.00.000000\n" +
+      "DBIN\n" +
+      "ZAZAA7V81\n";
+  return rawData;
+}
+
+String validLicenseDataWithCustomerId() {
+  final rawData = "@\n" +
+      "\n" +
+      "ANSI 636026010102DL00410288ZA03290015DLDAQD12345678\n" +
+      "DABPUBLIC\n" +
+      "DACJOHN\n" +
+      "DADQUINCY\n" +
+      "DAG789 E OAK ST\n" +
+      "DAIANYTOWN\n" +
+      "DAHAPT #4A\n" +
+      "DAJCA\n" +
+      "DAK90223\n" +
+      "DBB19700115\n" +
+      "DBA20350131\n" +
+      "DAU509\n" +
+      "DAW180\n" +
+      "DAZBR\n" +
+      "DAYGRN\n" +
+      "DBC1\n" +
+      "DBHN\n" +
+      "DARD\n" +
+      "DBD20131003\n" +
+      "DBE2013-10-03 00.00.00.000000\n" +
+      "DBIN\n" +
+      "ZAZAA7V81\n";
+  return rawData;
+}
+
+String validLicenseDataWithCustomerIdAndUniqueCustomerId() {
+  final rawData = "@\n" +
+      "\n" +
+      "ANSI 636026010102DL00410288ZA03290015DLDAQD12345678\n" +
+      "DBJD87654321\n" +
       "DABPUBLIC\n" +
       "DACJOHN\n" +
       "DADQUINCY\n" +

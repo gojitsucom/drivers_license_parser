@@ -6,10 +6,11 @@ import 'field_parser.dart';
 import 'license_date_parser.dart';
 
 class VersionOneFieldMapper extends FieldMapper {
+  static const driverLicenseName = "driverLicenseName";
+
   static const versionOneFieldMapperOverrides = {
-    "customerId": "DBJ",
-    "lastName": "DAB",
-    "driverLicenseName": "DAA",
+    FieldMapper.lastName: "DAB",
+    driverLicenseName: "DAA",
   };
 
   VersionOneFieldMapper()
@@ -28,29 +29,34 @@ class VersionOneFieldParser extends FieldParser {
           dateFormatLocale: dateFormatLocale,
         );
 
+  @override
+  String? parseDriversLicenseNumber() {
+    return super.parseDriversLicenseNumber() ?? parseString(FieldMapper.uniqueCustomerId);
+  }
+
   /// Version 1 of the spec calls for CCYYMMDD for all machine-readable dates
   @override
   LicenseDateParser licenseDateParser = LicenseDateParser.yearMonthDay;
 
   @override
   String? parseFirstName() {
-    return parseString("firstName") ?? parseDriverLicenseName("firstName");
+    return parseString(FieldMapper.firstName) ?? parseDriverLicenseName(FieldMapper.firstName);
   }
 
   @override
   String? parseLastName() {
-    return parseString("lastName") ?? parseDriverLicenseName("lastName");
+    return parseString(FieldMapper.lastName) ?? parseDriverLicenseName(FieldMapper.lastName);
   }
 
   @override
   String? parseMiddleName() {
-    return parseString("middleName") ?? parseDriverLicenseName("middleName");
+    return parseString(FieldMapper.middleName) ?? parseDriverLicenseName(FieldMapper.middleName);
   }
 
   /// Parse something like 508 (5'8") into 68"
   @override
   double? parseHeight() {
-    final heightInFeedAndInches = parseString("height");
+    final heightInFeedAndInches = parseString(FieldMapper.height);
     if (heightInFeedAndInches == null) {
       return null;
     }
@@ -72,7 +78,7 @@ class VersionOneFieldParser extends FieldParser {
 
   @override
   NameSuffix parseNameSuffix() {
-    var suffix = parseDriverLicenseName("suffix") ?? parseString("suffix");
+    var suffix = parseDriverLicenseName(FieldMapper.suffix) ?? parseString(FieldMapper.suffix);
 
     if (suffix == null) {
       return NameSuffix.unknown;
@@ -116,31 +122,31 @@ class VersionOneFieldParser extends FieldParser {
   }
 
   String? parseDriverLicenseName(String key) {
-    final driverLicenseName = parseString("driverLicenseName");
+    final driverLicenseName = parseString(VersionOneFieldMapper.driverLicenseName);
     if (driverLicenseName == null) {
       return null;
     }
     final namePieces = driverLicenseName.split(",");
     switch (key) {
-      case "lastName":
+      case FieldMapper.lastName:
         if (namePieces.isEmpty) {
           return null;
         } else {
           return namePieces[0];
         }
-      case "firstName":
+      case FieldMapper.firstName:
         if (namePieces.length <= 1) {
           return null;
         } else {
           return namePieces[1];
         }
-      case "middleName":
+      case FieldMapper.middleName:
         if (namePieces.length <= 2) {
           return null;
         } else {
           return namePieces[2];
         }
-      case "suffix":
+      case FieldMapper.suffix:
         if (namePieces.length <= 3) {
           return null;
         } else {

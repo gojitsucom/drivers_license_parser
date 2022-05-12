@@ -3,7 +3,7 @@ import 'field_parser.dart';
 
 class VersionTwoFieldMapper extends FieldMapper {
   static const versionTwoFieldMapperOverrides = {
-    "firstName": "DCT",
+    FieldMapper.firstName: "DCT",
   };
 
   VersionTwoFieldMapper()

@@ -86,12 +86,16 @@ class FieldParser {
     }
   }
 
+  String? parseDriversLicenseNumber() {
+    return parseString(FieldMapper.customerId);
+  }
+
   ///
   /// Parse the AAMVA last name out of the raw data
   /// - Returns: An optional value parsed out of the raw data
   ///
   String? parseFirstName() {
-    return parseString("firstName");
+    return parseString(FieldMapper.firstName);
   }
 
   ///
@@ -99,7 +103,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   String? parseLastName() {
-    return parseString("lastName");
+    return parseString(FieldMapper.lastName);
   }
 
   ///
@@ -107,7 +111,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   String? parseMiddleName() {
-    return parseString("middleName");
+    return parseString(FieldMapper.middleName);
   }
 
   ///
@@ -115,7 +119,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   DateTime? parseExpirationDate() {
-    return parseDate("expirationDate");
+    return parseDate(FieldMapper.expirationDate);
   }
 
   ///
@@ -123,7 +127,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   DateTime? parseIssueDate() {
-    return parseDate("issueDate");
+    return parseDate(FieldMapper.issueDate);
   }
 
   ///
@@ -131,7 +135,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   DateTime? parseDateOfBirth() {
-    return parseDate("dateOfBirth");
+    return parseDate(FieldMapper.dateOfBirth);
   }
 
   ///
@@ -139,7 +143,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   IssuingCountry parseCountry() {
-    final country = parseString("country");
+    final country = parseString(FieldMapper.country);
     if (country == null) {
       return IssuingCountry.unknown;
     }
@@ -178,7 +182,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   Gender parseGender() {
-    final gender = parseString("gender");
+    final gender = parseString(FieldMapper.gender);
     if (gender == null) {
       return Gender.unknown;
     }
@@ -198,7 +202,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   EyeColor parseEyeColor() {
-    final color = parseString("eyeColor");
+    final color = parseString(FieldMapper.eyeColor);
     if (color == null) {
       return EyeColor.unknown;
     }
@@ -231,7 +235,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   NameSuffix parseNameSuffix() {
-    final suffix = parseString("suffix");
+    final suffix = parseString(FieldMapper.suffix);
     if (suffix == null) {
       return NameSuffix.unknown;
     }
@@ -278,7 +282,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   HairColor parseHairColor() {
-    final color = parseString("hairColor");
+    final color = parseString(FieldMapper.hairColor);
     if (color == null) {
       return HairColor.unknown;
     }
@@ -310,8 +314,8 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data in inches
   ///
   double? parseHeight() {
-    final heightString = parseString("height");
-    final height = parseDouble("height");
+    final heightString = parseString(FieldMapper.height);
+    final height = parseDouble(FieldMapper.height);
     if (heightString == null || height == null) {
       return null;
     }
@@ -326,7 +330,7 @@ class FieldParser {
   /// postal codes can include both the base 5-digit code and the 4-digit routing code
   /// this splits them up and makes it easy to work with
   PostalCode? parsePostalCode() {
-    final postalCodeString = parseString("postalCode");
+    final postalCodeString = parseString(FieldMapper.postalCode);
     if (postalCodeString != null) {
       if (postalCodeString.length == 9) {
         return PostalCode(

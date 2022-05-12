@@ -43,8 +43,14 @@ class License {
   /// The license holder's postal code
   final PostalCode? postalCode;
 
-  /// The license holder's customer Id (e.g. Driver License Number)
+  /// This is usually the [customerId] but it can also be the [uniqueCustomerId]
+  final String? driversLicenseNumber;
+
+  /// The license holder's customer Id (e.g. Driver License Number). You generally want to use [driversLicenseNumber] instead of this directly.
   final String? customerId;
+
+  /// Only available in version 1. You generally want to use [driversLicenseNumber] instead of this directly.
+  final String? uniqueCustomerId;
 
   /// A unique document identifier
   final String? documentId;
@@ -109,6 +115,8 @@ class License {
     this.state,
     this.postalCode,
     this.customerId,
+    this.uniqueCustomerId,
+    required this.driversLicenseNumber,
     this.documentId,
     this.country,
     this.middleNameTruncation,

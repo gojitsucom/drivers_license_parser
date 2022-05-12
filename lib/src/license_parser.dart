@@ -1,3 +1,4 @@
+import 'package:drivers_license_parser/src/field_mapper.dart';
 import 'package:drivers_license_parser/src/field_parser.dart';
 import 'package:drivers_license_parser/src/license.dart';
 import 'package:drivers_license_parser/src/regex.dart';
@@ -30,28 +31,30 @@ class LicenseParser {
       gender: fieldParser.parseGender(),
       eyeColor: fieldParser.parseEyeColor(),
       height: fieldParser.parseHeight(),
-      streetAddress: fieldParser.parseString("streetAddress"),
-      city: fieldParser.parseString("city"),
-      state: fieldParser.parseString("state"),
+      streetAddress: fieldParser.parseString(FieldMapper.streetAddress),
+      city: fieldParser.parseString(FieldMapper.city),
+      state: fieldParser.parseString(FieldMapper.state),
       postalCode: fieldParser.parsePostalCode(),
-      customerId: fieldParser.parseString("customerId"),
-      documentId: fieldParser.parseString("documentId"),
+      customerId: fieldParser.parseString(FieldMapper.customerId),
+      uniqueCustomerId: fieldParser.parseString(FieldMapper.uniqueCustomerId),
+      driversLicenseNumber: fieldParser.parseDriversLicenseNumber(),
+      documentId: fieldParser.parseString(FieldMapper.documentId),
       country: fieldParser.parseCountry(),
       middleNameTruncation:
-          fieldParser.parseTruncationStatus("middleNameTruncation"),
+          fieldParser.parseTruncationStatus(FieldMapper.middleNameTruncation),
       firstNameTruncation:
-          fieldParser.parseTruncationStatus("firstNameTruncation"),
+          fieldParser.parseTruncationStatus(FieldMapper.firstNameTruncation),
       lastNameTruncation:
-          fieldParser.parseTruncationStatus("lastNameTruncation"),
+          fieldParser.parseTruncationStatus(FieldMapper.lastNameTruncation),
       streetAddressSupplement:
-          fieldParser.parseString("streetAddressSupplement"),
+          fieldParser.parseString(FieldMapper.streetAddressSupplement),
       hairColor: fieldParser.parseHairColor(),
-      placeOfBirth: fieldParser.parseString("placeOfBirth"),
-      auditInformation: fieldParser.parseString("auditInformation"),
-      inventoryControlNumber: fieldParser.parseString("inventoryControlNumber"),
-      lastNameAlias: fieldParser.parseString("lastNameAlias"),
-      firstNameAlias: fieldParser.parseString("firstNameAlias"),
-      suffixAlias: fieldParser.parseString("suffixAlias"),
+      placeOfBirth: fieldParser.parseString(FieldMapper.placeOfBirth),
+      auditInformation: fieldParser.parseString(FieldMapper.auditInformation),
+      inventoryControlNumber: fieldParser.parseString(FieldMapper.inventoryControlNumber),
+      lastNameAlias: fieldParser.parseString(FieldMapper.lastNameAlias),
+      firstNameAlias: fieldParser.parseString(FieldMapper.firstNameAlias),
+      suffixAlias: fieldParser.parseString(FieldMapper.suffixAlias),
       suffix: fieldParser.parseNameSuffix(),
       version: parseVersion(data),
       pdf417: data,
