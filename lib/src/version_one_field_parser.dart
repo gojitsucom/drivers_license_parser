@@ -31,7 +31,11 @@ class VersionOneFieldParser extends FieldParser {
 
   @override
   String? parseDriversLicenseNumber() {
-    return super.parseDriversLicenseNumber() ?? parseString(FieldMapper.uniqueCustomerId);
+    return super.parseDriversLicenseNumber() ??
+        parseString(
+          FieldMapper.uniqueCustomerId,
+          matchLineStartOnly: false,
+        );
   }
 
   /// Version 1 of the spec calls for CCYYMMDD for all machine-readable dates
@@ -40,17 +44,20 @@ class VersionOneFieldParser extends FieldParser {
 
   @override
   String? parseFirstName() {
-    return parseString(FieldMapper.firstName) ?? parseDriverLicenseName(FieldMapper.firstName);
+    return parseString(FieldMapper.firstName) ??
+        parseDriverLicenseName(FieldMapper.firstName);
   }
 
   @override
   String? parseLastName() {
-    return parseString(FieldMapper.lastName) ?? parseDriverLicenseName(FieldMapper.lastName);
+    return parseString(FieldMapper.lastName) ??
+        parseDriverLicenseName(FieldMapper.lastName);
   }
 
   @override
   String? parseMiddleName() {
-    return parseString(FieldMapper.middleName) ?? parseDriverLicenseName(FieldMapper.middleName);
+    return parseString(FieldMapper.middleName) ??
+        parseDriverLicenseName(FieldMapper.middleName);
   }
 
   /// Parse something like 508 (5'8") into 68"
@@ -78,7 +85,8 @@ class VersionOneFieldParser extends FieldParser {
 
   @override
   NameSuffix parseNameSuffix() {
-    var suffix = parseDriverLicenseName(FieldMapper.suffix) ?? parseString(FieldMapper.suffix);
+    var suffix = parseDriverLicenseName(FieldMapper.suffix) ??
+        parseString(FieldMapper.suffix);
 
     if (suffix == null) {
       return NameSuffix.unknown;
@@ -122,7 +130,10 @@ class VersionOneFieldParser extends FieldParser {
   }
 
   String? parseDriverLicenseName(String key) {
-    final driverLicenseName = parseString(VersionOneFieldMapper.driverLicenseName);
+    final driverLicenseName = parseString(
+      VersionOneFieldMapper.driverLicenseName,
+      matchLineStartOnly: false,
+    );
     if (driverLicenseName == null) {
       return null;
     }
