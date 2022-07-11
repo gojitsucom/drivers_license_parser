@@ -35,8 +35,14 @@ class LicenseParser {
       city: fieldParser.parseString(FieldMapper.city),
       state: fieldParser.parseString(FieldMapper.state),
       postalCode: fieldParser.parsePostalCode(),
-      customerId: fieldParser.parseString(FieldMapper.customerId),
-      uniqueCustomerId: fieldParser.parseString(FieldMapper.uniqueCustomerId),
+      customerId: fieldParser.parseString(
+        FieldMapper.customerId,
+        matchLineStartOnly: false,
+      ),
+      uniqueCustomerId: fieldParser.parseString(
+        FieldMapper.uniqueCustomerId,
+        matchLineStartOnly: false,
+      ),
       driversLicenseNumber: fieldParser.parseDriversLicenseNumber(),
       documentId: fieldParser.parseString(FieldMapper.documentId),
       country: fieldParser.parseCountry(),
@@ -51,7 +57,8 @@ class LicenseParser {
       hairColor: fieldParser.parseHairColor(),
       placeOfBirth: fieldParser.parseString(FieldMapper.placeOfBirth),
       auditInformation: fieldParser.parseString(FieldMapper.auditInformation),
-      inventoryControlNumber: fieldParser.parseString(FieldMapper.inventoryControlNumber),
+      inventoryControlNumber:
+          fieldParser.parseString(FieldMapper.inventoryControlNumber),
       lastNameAlias: fieldParser.parseString(FieldMapper.lastNameAlias),
       firstNameAlias: fieldParser.parseString(FieldMapper.firstNameAlias),
       suffixAlias: fieldParser.parseString(FieldMapper.suffixAlias),
@@ -72,13 +79,18 @@ class LicenseParser {
       case "02":
         return VersionTwoFieldParser(data, dateFormatLocale: dateFormatLocale);
       case "03":
-        return VersionThreeFieldParser(data, dateFormatLocale: dateFormatLocale);
+        return VersionThreeFieldParser(data,
+            dateFormatLocale: dateFormatLocale);
       default:
         return FieldParser(data: data, dateFormatLocale: dateFormatLocale);
     }
   }
 
   static String? parseVersion(String data) {
-    return LicenseRegex.firstMatch(pattern: "\\d{6}(\\d{2})\\w+", data: data);
+    return LicenseRegex.firstMatch(
+      pattern: "\\d{6}(\\d{2})\\w+",
+      data: data,
+      matchLineStartOnly: false,
+    );
   }
 }

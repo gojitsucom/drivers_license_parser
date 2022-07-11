@@ -41,9 +41,13 @@ class FieldParser {
   ///  - The human readable key we're looking for
   ///  - Returns: An optional value parsed out of the raw data
   ///
-  String? parseString(String key) {
+  String? parseString(String key, {bool matchLineStartOnly = true}) {
     final identifier = fieldMapper.fieldFor(key);
-    return LicenseRegex.firstMatch(pattern: '$identifier(.+)\\b', data: data);
+    return LicenseRegex.firstMatch(
+      pattern: '$identifier(.+)\\b',
+      data: data,
+      matchLineStartOnly: matchLineStartOnly,
+    );
   }
 
   ///
@@ -52,10 +56,13 @@ class FieldParser {
   /// - The human readable key we're looking for
   /// - Returns: An optional value parsed out of the raw data
   ///
-  double? parseDouble(String key) {
+  double? parseDouble(String key, {bool matchLineStartOnly = true}) {
     final identifier = fieldMapper.fieldFor(key);
-    final result =
-        LicenseRegex.firstMatch(pattern: "$identifier(\\w+)\\b", data: data);
+    final result = LicenseRegex.firstMatch(
+      pattern: "$identifier(\\w+)\\b",
+      data: data,
+      matchLineStartOnly: matchLineStartOnly,
+    );
     if (result != null) {
       return double.tryParse(result);
     }
@@ -67,8 +74,11 @@ class FieldParser {
   /// - The human readable key we're looking for
   /// - Returns: An optional value parsed out of the raw data
   ///
-  DateTime? parseDate(String field) {
-    final dateString = parseString(field);
+  DateTime? parseDate(String field, {bool matchLineStartOnly = true}) {
+    final dateString = parseString(
+      field,
+      matchLineStartOnly: matchLineStartOnly,
+    );
     if (dateString == null || dateString.isEmpty) {
       return null;
     }
@@ -87,7 +97,7 @@ class FieldParser {
   }
 
   String? parseDriversLicenseNumber() {
-    return parseString(FieldMapper.customerId);
+    return parseString(FieldMapper.customerId, matchLineStartOnly: false);
   }
 
   ///
@@ -95,7 +105,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   String? parseFirstName() {
-    return parseString(FieldMapper.firstName);
+    return parseString(FieldMapper.firstName, matchLineStartOnly: true);
   }
 
   ///
@@ -103,7 +113,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   String? parseLastName() {
-    return parseString(FieldMapper.lastName);
+    return parseString(FieldMapper.lastName, matchLineStartOnly: true);
   }
 
   ///
@@ -111,7 +121,7 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   String? parseMiddleName() {
-    return parseString(FieldMapper.middleName);
+    return parseString(FieldMapper.middleName, matchLineStartOnly: true);
   }
 
   ///

@@ -1,7 +1,7 @@
 class LicenseRegex {
-  static String? firstMatch({required String pattern, required String data}) {
+  static String? firstMatch({required String pattern, required String data, bool matchLineStartOnly = true}) {
     try {
-      final regex = RegExp(pattern, caseSensitive: false);
+      final regex = RegExp("${matchLineStartOnly ? "\\b": ""}$pattern", caseSensitive: false);
       final firstMatch = regex.firstMatch(data);
 
       if (firstMatch == null) {

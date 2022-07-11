@@ -1,6 +1,6 @@
 name: drivers_license_parser
 description: This package provides a simple and effective utility for parsing barcodes displayed on the back of drivers license cards issued in the United States and Canada.
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/axlehire/drivers_license_parser
 
 environment:
