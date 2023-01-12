@@ -15,7 +15,7 @@ void main() {
             "DDEN\r\n" +
             "DACJOHN\r\n" +
             "DDFN\r\n" +
-            "DADQUINCY\r\n" +
+            "DADNONE\r\n" +
             "DDGN\r\n" +
             "DCAD\r\n" +
             "DCBNONE\r\n" +
@@ -46,7 +46,7 @@ void main() {
 
         expect(result.version, "08");
         expect(result.lastName, "PUBLIC");
-        expect(result.middleName, "QUINCY");
+        expect(result.middleName, null);
         expect(result.firstName, "JOHN");
         expect(result.eyeColor, EyeColor.green);
         expect(result.streetAddress, "789 E OAK ST");

@@ -43,11 +43,15 @@ class FieldParser {
   ///
   String? parseString(String key, {bool matchLineStartOnly = true}) {
     final identifier = fieldMapper.fieldFor(key);
-    return LicenseRegex.firstMatch(
+    final result = LicenseRegex.firstMatch(
       pattern: '$identifier(.+)\\b',
       data: data,
       matchLineStartOnly: matchLineStartOnly,
     );
+    if(result == 'NONE'){
+      return null;
+    }
+    return result;
   }
 
   ///

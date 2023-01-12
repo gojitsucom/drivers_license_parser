@@ -1,3 +1,6 @@
+## 1.2.2
+- Update return null when parsing `NONE` value
+
 ## 1.2.1
 - Fix an issue where user data contains key collisions and parser extracts the wrong info
 
