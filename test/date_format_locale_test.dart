@@ -6,28 +6,8 @@ import 'package:test/test.dart';
 
 void main() {
   test("Canadian dates are parsed correctly", () {
-    final rawData = "@\n" +
-        "\n" +
-        "ANSI 636012030001DL00000367DLDCAG2  \n" +
-        "DCBX\n" +
-        "DCDNONE\n" +
-        "DBA20250425\n" +
-        "DCSPUBLIC,\n" +
-        "DCTJOHN\n" +
-        "DBD20150910\n" +
-        "DBB19740328\n" +
-        "DBC1\n" +
-        "DAYNONE\n" +
-        "DAU170 cm\n" +
-        "DAG789 E OAK AVE,\n" +
-        "DAIVANCOUVER\n" +
-        "DAJBC\n" +
-        "DAKA5K 4X9\n" +
-        "DAQM1234-12345-12345\n" +
-        "DCFAB1234567\n" +
-        "DCGCAN\n" +
-        "DCHNONE\n" +
-        "DCK*1234567*";
+    final rawData =
+        "@\n\nANSI 636012030001DL00000367DLDCAG2  \nDCBX\nDCDNONE\nDBA20250425\nDCSPUBLIC,\nDCTJOHN\nDBD20150910\nDBB19740328\nDBC1\nDAYNONE\nDAU170 cm\nDAG789 E OAK AVE,\nDAIVANCOUVER\nDAJBC\nDAKA5K 4X9\nDAQM1234-12345-12345\nDCFAB1234567\nDCGCAN\nDCHNONE\nDCK*1234567*";
 
     final result = LicenseParser.parse(
       rawData,
@@ -40,30 +20,8 @@ void main() {
   });
 
   test("US format does not apply to version one", () {
-    final rawData = "@\n" +
-        "\n" +
-        "ANSI 636026010102DL00410288ZA03290015DLDBJD12345678\n" +
-        "DABPUBLIC\n" +
-        "DACJOHN\n" +
-        "DADQUINCY\n" +
-        "DAG789 E OAK ST\n" +
-        "DAIANYTOWN\n" +
-        "DAHAPT #4A\n" +
-        "DAJCA\n" +
-        "DAK90223\n" +
-        "DBB19700115\n" +
-        "DBA20350131\n" +
-        "DAU509\n" +
-        "DAW180\n" +
-        "DAZBR\n" +
-        "DAYGRN\n" +
-        "DBC1\n" +
-        "DBHN\n" +
-        "DARD\n" +
-        "DBD20131003\n" +
-        "DBE2013-10-03 00.00.00.000000\n" +
-        "DBIN\n" +
-        "ZAZAA7V81\n";
+    final rawData =
+        "@\n\nANSI 636026010102DL00410288ZA03290015DLDBJD12345678\nDABPUBLIC\nDACJOHN\nDADQUINCY\nDAG789 E OAK ST\nDAIANYTOWN\nDAHAPT #4A\nDAJCA\nDAK90223\nDBB19700115\nDBA20350131\nDAU509\nDAW180\nDAZBR\nDAYGRN\nDBC1\nDBHN\nDARD\nDBD20131003\nDBE2013-10-03 00.00.00.000000\nDBIN\nZAZAA7V81\n";
 
     final result = LicenseParser.parse(
       rawData,
