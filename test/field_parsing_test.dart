@@ -485,37 +485,7 @@ void main() {
 }
 
 String emptyLicenseData() {
-  final rawData = "@\n" +
-      "\n" +
-      "ANSI 636026080102DL00410288ZA03290015DLDAQ\n" +
-      "DCS\n" +
-      "DDE\n" +
-      "DAC\n" +
-      "DDF\n" +
-      "DAD\n" +
-      "DDG\n" +
-      "DCA\n" +
-      "DCB\n" +
-      "DCD\n" +
-      "DBD\n" +
-      "DBB\n" +
-      "DBA\n" +
-      "DBC\n" +
-      "DAU\n" +
-      "DAY\n" +
-      "DAG\n" +
-      "DAI\n" +
-      "DAJ\n" +
-      "DAK\n" +
-      "DCF\n" +
-      "DCG\n" +
-      "DAW\n" +
-      "DAZ\n" +
-      "DCK\n" +
-      "DDB\n" +
-      "DDK\n" +
-      "ZAZ\n" +
-      "ZAB\n" +
-      "ZAC";
+  final rawData =
+      "@\n\nANSI 636026080102DL00410288ZA03290015DLDAQ\nDCS\nDDE\nDAC\nDDF\nDAD\nDDG\nDCA\nDCB\nDCD\nDBD\nDBB\nDBA\nDBC\nDAU\nDAY\nDAG\nDAI\nDAJ\nDAK\nDCF\nDCG\nDAW\nDAZ\nDCK\nDDB\nDDK\nZAZ\nZAB\nZAC";
   return rawData;
 }
