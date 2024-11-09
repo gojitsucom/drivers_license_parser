@@ -135,6 +135,7 @@ class License {
     this.pdf417,
   });
 
+  /// Determines if the license is expired
   bool isExpired() {
     if (expirationDate == null || DateTime.now().isBefore(expirationDate!)) {
       return false;
@@ -142,6 +143,7 @@ class License {
     return true;
   }
 
+  /// Determines if the license has been issued
   bool hasBeenIssued() {
     if (issueDate == null || DateTime.now().isBefore(issueDate!)) {
       return false;
@@ -149,6 +151,7 @@ class License {
     return true;
   }
 
+  /// Determines if the license is acceptable
   bool isAcceptable() {
     if (isExpired() || !hasBeenIssued()) {
       return false;
