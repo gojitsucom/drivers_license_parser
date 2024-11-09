@@ -172,4 +172,41 @@ class License {
     }
     return true;
   }
+
+  /// to json
+  Map<String, dynamic> toJson() {
+    return {
+      'firstName': firstName,
+      'lastName': lastName,
+      'middleName': middleName,
+      'expirationDate': expirationDate?.toIso8601String(),
+      'issueDate': issueDate?.toIso8601String(),
+      'dateOfBirth': dateOfBirth?.toIso8601String,
+      'height': height,
+      'streetAddress': streetAddress,
+      'city': city,
+      'state': state,
+      'postalCode': postalCode?.postalCode,
+      'postalCodeExtension': postalCode?.extension,
+      'documentId': documentId,
+      'customerId': customerId,
+      'uniqueCustomerId': uniqueCustomerId,
+      'driversLicenseNumber': driversLicenseNumber,
+      'country': country?.name,
+      'middleNameTruncation': middleNameTruncation?.name,
+      'firstNameTruncation': firstNameTruncation?.name,
+      'lastNameTruncation': lastNameTruncation?.name,
+      'streetAddressSupplement': streetAddressSupplement,
+      'hairColor': hairColor?.name,
+      'placeOfBirth': placeOfBirth,
+      'auditInformation': auditInformation,
+      'inventoryControlNumber': inventoryControlNumber,
+      'lastNameAlias': lastNameAlias,
+      'firstNameAlias': firstNameAlias,
+      'suffixAlias': suffixAlias,
+      'suffix': suffix?.name,
+      'version': version,
+      'pdf417': pdf417,
+    };
+  }
 }
