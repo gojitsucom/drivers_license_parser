@@ -643,74 +643,13 @@ void main() {
 }
 
 String validLicenseData() {
-  final rawData = "@\n" +
-      "\n" +
-      "ANSI 636026080102DL00410288ZA03290015DLDAQD12345678\n" +
-      "DCSPUBLIC\n" +
-      "DDEN\n" +
-      "DACJOHN\n" +
-      "DDFN\n" +
-      "DADQUINCY\n" +
-      "DDGN\n" +
-      "DCAD\n" +
-      "DCBNONE\n" +
-      "DCDNONE\n" +
-      "DBD08242015\n" +
-      "DBB01151970\n" +
-      "DBA01312035\n" +
-      "DBC1\n" +
-      "DAU069 in\n" +
-      "DAYGRN\n" +
-      "DAG789 E OAK ST\n" +
-      "DAHAPT #4A\n" +
-      "DAIANYTOWN\n" +
-      "DAJCA\n" +
-      "DAK902230000  \n" +
-      "DCF83D9BN217QO983B1\n" +
-      "DCGUSA\n" +
-      "DAW180\n" +
-      "DAZBRO\n" +
-      "DCK12345678900000000000\n" +
-      "DDB02142014\n" +
-      "DDK1\n" +
-      "ZAZAAN\n" +
-      "ZAB\n" +
-      "ZAC";
+  final rawData =
+      "@\n\nANSI 636026080102DL00410288ZA03290015DLDAQD12345678\nDCSPUBLIC\nDDEN\nDACJOHN\nDDFN\nDADQUINCY\nDDGN\nDCAD\nDCBNONE\nDCDNONE\nDBD08242015\nDBB01151970\nDBA01312035\nDBC1\nDAU069 in\nDAYGRN\nDAG789 E OAK ST\nDAHAPT #4A\nDAIANYTOWN\nDAJCA\nDAK902230000  \nDCF83D9BN217QO983B1\nDCGUSA\nDAW180\nDAZBRO\nDCK12345678900000000000\nDDB02142014\nDDK1\nZAZAAN\nZAB\nZAC";
   return rawData;
 }
 
 String emptyLicenseData() {
-  final rawData = "@\n" +
-      "\n" +
-      "ANSI 636026080102DL00410288ZA03290015DLDAQD12345678\n" +
-      "DCS\n" +
-      "DDE\n" +
-      "DAC\n" +
-      "DDF\n" +
-      "DAD\n" +
-      "DDG\n" +
-      "DCA\n" +
-      "DCB\n" +
-      "DCD\n" +
-      "DBD\n" +
-      "DBB\n" +
-      "DBA\n" +
-      "DBC\n" +
-      "DAU\n" +
-      "DAY\n" +
-      "DAG\n" +
-      "DAI\n" +
-      "DAJ\n" +
-      "DAK\n" +
-      "DCF\n" +
-      "DCG\n" +
-      "DAW\n" +
-      "DAZ\n" +
-      "DCK\n" +
-      "DDB\n" +
-      "DDK\n" +
-      "ZAZ\n" +
-      "ZAB\n" +
-      "ZAC";
+  final rawData =
+      "@\n\nANSI 636026080102DL00410288ZA03290015DLDAQD12345678\nDCS\nDDE\nDAC\nDDF\nDAD\nDDG\nDCA\nDCB\nDCD\nDBD\nDBB\nDBA\nDBC\nDAU\nDAY\nDAG\nDAI\nDAJ\nDAK\nDCF\nDCG\nDAW\nDAZ\nDCK\nDDB\nDDK\nZAZ\nZAB\nZAC";
   return rawData;
 }
