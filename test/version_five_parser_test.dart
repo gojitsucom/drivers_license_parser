@@ -50,37 +50,8 @@ void main() {
 }
 
 String licenseData() {
-  final data = "@\n" +
-      "\n" +
-      "ANSI 636021050002DL00410229ZA02700014DLDCB\n" +
-      "DAQ123456789\n" +
-      "DCAD\n" +
-      "DAK11111 2222 \n" +
-      "DAJAR\n" +
-      "DAILITTLE ROCK\n" +
-      "DAG454 APRICOT RD\n" +
-      "DDGU\n" +
-      "DDFU\n" +
-      "DADQUINCY\n" +
-      "DDEU\n" +
-      "DACJOHN\n" +
-      "DDD0\n" +
-      "DDB09152012\n" +
-      "DDAN\n" +
-      "DBD10092015\n" +
-      "DCSPUBLIC\n" +
-      "DBC1\n" +
-      "DBB08111972\n" +
-      "DBA08112019\n" +
-      "DCLW\n" +
-      "DCK\n" +
-      "DAYBRO\n" +
-      "DCGUSA\n" +
-      "DCF\n" +
-      "DAU069 in\n" +
-      "DCDM\n" +
-      "ZAZAB6003\n" +
-      "ZAA\n";
+  final data =
+      "@\n\nANSI 636021050002DL00410229ZA02700014DLDCB\nDAQ123456789\nDCAD\nDAK11111 2222 \nDAJAR\nDAILITTLE ROCK\nDAG454 APRICOT RD\nDDGU\nDDFU\nDADQUINCY\nDDEU\nDACJOHN\nDDD0\nDDB09152012\nDDAN\nDBD10092015\nDCSPUBLIC\nDBC1\nDBB08111972\nDBA08112019\nDCLW\nDCK\nDAYBRO\nDCGUSA\nDCF\nDAU069 in\nDCDM\nZAZAB6003\nZAA\n";
 
   return data;
 }
