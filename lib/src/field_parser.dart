@@ -48,7 +48,7 @@ class FieldParser {
       data: data,
       matchLineStartOnly: matchLineStartOnly,
     );
-    if(result == 'NONE'){
+    if (result == 'NONE') {
       return null;
     }
     return result;
@@ -67,9 +67,8 @@ class FieldParser {
       data: data,
       matchLineStartOnly: matchLineStartOnly,
     );
-    if (result != null) {
-      return double.tryParse(result);
-    }
+    if (result == null) return null;
+    return double.tryParse(result);
   }
 
   ///
@@ -355,5 +354,6 @@ class FieldParser {
         return PostalCode(postalCode: postalCodeString);
       }
     }
+    return null;
   }
 }
