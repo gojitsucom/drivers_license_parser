@@ -132,7 +132,8 @@ class FieldParser {
   /// - Returns: An optional value parsed out of the raw data
   ///
   DateTime? parseExpirationDate() {
-    return parseDate(FieldMapper.expirationDate);
+    return parseDate(FieldMapper.expirationDate) ??
+        parseDate(FieldMapper.expirationDateAlt);
   }
 
   ///

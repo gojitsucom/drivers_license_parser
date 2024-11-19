@@ -4,6 +4,7 @@ class FieldMapper {
   static const lastName = "lastName";
   static const middleName = "middleName";
   static const expirationDate = "expirationDate";
+  static const expirationDateAlt = "expirationDateAlt";
   static const issueDate = "issueDate";
   static const dateOfBirth = "dateOfBirth";
   static const gender = "gender";
@@ -13,8 +14,10 @@ class FieldMapper {
   static const city = "city";
   static const state = "state";
   static const postalCode = "postalCode";
+
   /// this is the drivers license number most of the time
   static const customerId = "customerId";
+
   /// sometimes this is the drivers license number in V1 :(
   static const uniqueCustomerId = "uniqueCustomerId";
   static const documentId = "documentId";
@@ -36,6 +39,7 @@ class FieldMapper {
     lastName: "DCS",
     middleName: "DAD",
     expirationDate: "DBA",
+    expirationDateAlt: "ZOE",
     issueDate: "DBD",
     dateOfBirth: "DBB",
     gender: "DBC",
@@ -78,7 +82,6 @@ class FieldMapper {
   ///
   String fieldFor(String key) {
     final fieldValue = fields[key];
-
     return fieldValue ?? "";
   }
 }
