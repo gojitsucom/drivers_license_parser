@@ -181,7 +181,7 @@ class License {
       'middleName': middleName,
       'expirationDate': expirationDate?.toIso8601String(),
       'issueDate': issueDate?.toIso8601String(),
-      'dateOfBirth': dateOfBirth?.toIso8601String,
+      'dateOfBirth': dateOfBirth?.toIso8601String(),
       'height': height,
       'streetAddress': streetAddress,
       'city': city,
