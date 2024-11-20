@@ -38,6 +38,10 @@ void main() {
       });
 
       test("parses my license", () {
+<<<<<<< HEAD
+        final rawData =
+            "@\n\nANSI 636001030302DL00410279ZN03200070DLDCAD\nDCBNONE\nDCDNONE\nDBA10262023\nDCSMUNOZ\nDCTROSALIA\nDBD11032018\nDBB10261992\nDBC2\nDAYBRO\nDAU502\nDAG2400 PACIFIC ST 1\nDAIBROOKLYN\nDAJNY\nDAK112330000\nDAQ762877257\nDCFZ6CYT5M618\nDCGUSA\nDDAN\nDDB09282017\nDDD0\nZNZNAMUNOZ@ROSALIA\nZNBb6Fj:%5VgcG<Z2<>cfn6H'p+th./8g@e!99!:eh";
+=======
         final rawData = "@\n" +
         "\n" +
         "ANSI 636001030302DL00410279ZN03200070DLDCAD\n" +
@@ -64,6 +68,7 @@ void main() {
         "ZNZNAMUNOZ@ROSALIA\n" +
         // ignore: unnecessary_string_escapes
         "ZNBb6Fj:%5VgcG<Z2<>cfn6H'p+th./8g@e!99!:e\h";
+>>>>>>> parent of 645e8e7 (Update license_parser_test.dart)
 
         final result = LicenseParser.parse(rawData);
         expect(result.pdf417, rawData);

@@ -135,6 +135,7 @@ class License {
     this.pdf417,
   });
 
+  /// Determines if the license is expired
   bool isExpired() {
     if (expirationDate == null || DateTime.now().isBefore(expirationDate!)) {
       return false;
@@ -142,6 +143,7 @@ class License {
     return true;
   }
 
+  /// Determines if the license has been issued
   bool hasBeenIssued() {
     if (issueDate == null || DateTime.now().isBefore(issueDate!)) {
       return false;
@@ -149,6 +151,7 @@ class License {
     return true;
   }
 
+  /// Determines if the license is acceptable
   bool isAcceptable() {
     if (isExpired() || !hasBeenIssued()) {
       return false;
@@ -168,5 +171,42 @@ class License {
       return false;
     }
     return true;
+  }
+
+  /// to json
+  Map<String, dynamic> toJson() {
+    return {
+      'firstName': firstName,
+      'lastName': lastName,
+      'middleName': middleName,
+      'expirationDate': expirationDate?.toIso8601String(),
+      'issueDate': issueDate?.toIso8601String(),
+      'dateOfBirth': dateOfBirth?.toIso8601String(),
+      'height': height,
+      'streetAddress': streetAddress,
+      'city': city,
+      'state': state,
+      'postalCode': postalCode?.postalCode,
+      'postalCodeExtension': postalCode?.extension,
+      'documentId': documentId,
+      'customerId': customerId,
+      'uniqueCustomerId': uniqueCustomerId,
+      'driversLicenseNumber': driversLicenseNumber,
+      'country': country?.name,
+      'middleNameTruncation': middleNameTruncation?.name,
+      'firstNameTruncation': firstNameTruncation?.name,
+      'lastNameTruncation': lastNameTruncation?.name,
+      'streetAddressSupplement': streetAddressSupplement,
+      'hairColor': hairColor?.name,
+      'placeOfBirth': placeOfBirth,
+      'auditInformation': auditInformation,
+      'inventoryControlNumber': inventoryControlNumber,
+      'lastNameAlias': lastNameAlias,
+      'firstNameAlias': firstNameAlias,
+      'suffixAlias': suffixAlias,
+      'suffix': suffix?.name,
+      'version': version,
+      'pdf417': pdf417,
+    };
   }
 }

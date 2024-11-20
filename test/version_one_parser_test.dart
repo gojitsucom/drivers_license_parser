@@ -295,17 +295,22 @@ void main() {
     group("Parsing the Second Street Address Line", () {
       group("when the street address supplement is present", () {
         test("should reveal the supplemental street address", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.streetAddressSupplement, "APT #4A");
         });
       });
     });
 
-    group("Parsing the Drivers License Number (customerId/uniqueCustomerId)", () {
+    group("Parsing the Drivers License Number (customerId/uniqueCustomerId)",
+        () {
       group("when the unique customer id (DBJ) number is present", () {
-        test("should parse only the uniqueCustomerId and use it for driversLicenseNumber", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+        test(
+            "should parse only the uniqueCustomerId and use it for driversLicenseNumber",
+            () {
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.uniqueCustomerId, "D87654321");
           expect(result.customerId, null);
@@ -314,7 +319,9 @@ void main() {
       });
 
       group("when the customerId is present", () {
-        test("should parse only customerId and use it for the driversLicenseNumber", () {
+        test(
+            "should parse only customerId and use it for the driversLicenseNumber",
+            () {
           final result = LicenseParser.parse(validLicenseDataWithCustomerId());
 
           expect(result.customerId, "D12345678");
@@ -323,9 +330,13 @@ void main() {
         });
       });
 
-      group("when both the customerId and the uniqueCustomerId are present", () {
-        test("should parse both the customerId and uniqueCustomerId but only use customerId for the driversLicenseNumber", () {
-          final result = LicenseParser.parse(validLicenseDataWithCustomerIdAndUniqueCustomerId());
+      group("when both the customerId and the uniqueCustomerId are present",
+          () {
+        test(
+            "should parse both the customerId and uniqueCustomerId but only use customerId for the driversLicenseNumber",
+            () {
+          final result = LicenseParser.parse(
+              validLicenseDataWithCustomerIdAndUniqueCustomerId());
 
           expect(result.customerId, "D12345678");
           expect(result.uniqueCustomerId, "D87654321");
@@ -337,9 +348,10 @@ void main() {
     group("Parsing the Postal Code", () {
       group("when the postal code is present", () {
         test("should reveal the postal code", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
-          expect(result.postalCode, PostalCode(postalCode: "90223"));//"90223"
+          expect(result.postalCode, PostalCode(postalCode: "90223")); //"90223"
         });
       });
     });
@@ -347,7 +359,8 @@ void main() {
     group("Parsing the State", () {
       group("when the state is present", () {
         test("should reveal the state", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.state, "CA");
         });
@@ -357,7 +370,8 @@ void main() {
     group("Parsing the City", () {
       group("when the city is present", () {
         test("should reveal the city", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.city, "ANYTOWN");
         });
@@ -367,7 +381,8 @@ void main() {
     group("Parsing the Street Address", () {
       group("when the street address is present", () {
         test("should reveal the street address", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.streetAddress, "789 E OAK ST");
         });
@@ -377,7 +392,8 @@ void main() {
     group("Parsing Height", () {
       group("when the height is present", () {
         test("should reveal the height in inches", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.height, 69);
         });
@@ -488,7 +504,8 @@ void main() {
     group("Parsing the first name", () {
       group("when the first name is present", () {
         test("should reveal the first name", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.firstName, "JOHN");
         });
@@ -520,7 +537,8 @@ void main() {
     group("Parsing the last name", () {
       group("when the last name is present", () {
         test("should reveal the last name", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.lastName, "PUBLIC");
         });
@@ -530,7 +548,8 @@ void main() {
     group("Parsing the middle name", () {
       group("when the middle name is present", () {
         test("should reveal the middle name", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
           expect(result.middleName, "QUINCY");
         });
@@ -562,7 +581,8 @@ void main() {
     group("Parsing the expiration date", () {
       group("when the expiration date is present", () {
         test("should reveal the expiration date", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
           //"20350131"
           final expectedDate = DateTime(2035, 1, 31);
 
@@ -578,7 +598,8 @@ void main() {
         });
         group("when the expiration date is in the future", () {
           test("should not be expired", () {
-            final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+            final result =
+                LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
 
             expect(result.isExpired(), isFalse);
           });
@@ -589,7 +610,8 @@ void main() {
     group("Parsing the issue date", () {
       group("when the issue date is present", () {
         test("should reveal the issue date", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
           //"10032013"
           final expectedDate = DateTime(2013, 10, 3);
 
@@ -616,7 +638,8 @@ void main() {
     group("Parsing the date of birth", () {
       group("when the date of birth is present", () {
         test("should reveal the date of birth", () {
-          final result = LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
+          final result =
+              LicenseParser.parse(validLicenseDataWithUniqueCustomerId());
           //"19700115"
           final expectedDate = DateTime(1970, 1, 15);
 
@@ -628,115 +651,25 @@ void main() {
 }
 
 String validLicenseDataWithUniqueCustomerId() {
-  final rawData = "@\n" +
-      "\n" +
-      "ANSI 636026010102DL00410288ZA03290015DLDBJD87654321\n" +
-      "DABPUBLIC\n" +
-      "DACJOHN\n" +
-      "DADQUINCY\n" +
-      "DAG789 E OAK ST\n" +
-      "DAIANYTOWN\n" +
-      "DAHAPT #4A\n" +
-      "DAJCA\n" +
-      "DAK90223\n" +
-      "DBB19700115\n" +
-      "DBA20350131\n" +
-      "DAU509\n" +
-      "DAW180\n" +
-      "DAZBR\n" +
-      "DAYGRN\n" +
-      "DBC1\n" +
-      "DBHN\n" +
-      "DARD\n" +
-      "DBD20131003\n" +
-      "DBE2013-10-03 00.00.00.000000\n" +
-      "DBIN\n" +
-      "ZAZAA7V81\n";
+  final rawData =
+      "@\n\nANSI 636026010102DL00410288ZA03290015DLDBJD87654321\nDABPUBLIC\nDACJOHN\nDADQUINCY\nDAG789 E OAK ST\nDAIANYTOWN\nDAHAPT #4A\nDAJCA\nDAK90223\nDBB19700115\nDBA20350131\nDAU509\nDAW180\nDAZBR\nDAYGRN\nDBC1\nDBHN\nDARD\nDBD20131003\nDBE2013-10-03 00.00.00.000000\nDBIN\nZAZAA7V81\n";
   return rawData;
 }
 
 String validLicenseDataWithCustomerId() {
-  final rawData = "@\n" +
-      "\n" +
-      "ANSI 636026010102DL00410288ZA03290015DLDAQD12345678\n" +
-      "DABPUBLIC\n" +
-      "DACJOHN\n" +
-      "DADQUINCY\n" +
-      "DAG789 E OAK ST\n" +
-      "DAIANYTOWN\n" +
-      "DAHAPT #4A\n" +
-      "DAJCA\n" +
-      "DAK90223\n" +
-      "DBB19700115\n" +
-      "DBA20350131\n" +
-      "DAU509\n" +
-      "DAW180\n" +
-      "DAZBR\n" +
-      "DAYGRN\n" +
-      "DBC1\n" +
-      "DBHN\n" +
-      "DARD\n" +
-      "DBD20131003\n" +
-      "DBE2013-10-03 00.00.00.000000\n" +
-      "DBIN\n" +
-      "ZAZAA7V81\n";
+  final rawData =
+      "@\n\nANSI 636026010102DL00410288ZA03290015DLDAQD12345678\nDABPUBLIC\nDACJOHN\nDADQUINCY\nDAG789 E OAK ST\nDAIANYTOWN\nDAHAPT #4A\nDAJCA\nDAK90223\nDBB19700115\nDBA20350131\nDAU509\nDAW180\nDAZBR\nDAYGRN\nDBC1\nDBHN\nDARD\nDBD20131003\nDBE2013-10-03 00.00.00.000000\nDBIN\nZAZAA7V81\n";
   return rawData;
 }
 
 String validLicenseDataWithCustomerIdAndUniqueCustomerId() {
-  final rawData = "@\n" +
-      "\n" +
-      "ANSI 636026010102DL00410288ZA03290015DLDAQD12345678\n" +
-      "DBJD87654321\n" +
-      "DABPUBLIC\n" +
-      "DACJOHN\n" +
-      "DADQUINCY\n" +
-      "DAG789 E OAK ST\n" +
-      "DAIANYTOWN\n" +
-      "DAHAPT #4A\n" +
-      "DAJCA\n" +
-      "DAK90223\n" +
-      "DBB19700115\n" +
-      "DBA20350131\n" +
-      "DAU509\n" +
-      "DAW180\n" +
-      "DAZBR\n" +
-      "DAYGRN\n" +
-      "DBC1\n" +
-      "DBHN\n" +
-      "DARD\n" +
-      "DBD20131003\n" +
-      "DBE2013-10-03 00.00.00.000000\n" +
-      "DBIN\n" +
-      "ZAZAA7V81\n";
+  final rawData =
+      "@\n\nANSI 636026010102DL00410288ZA03290015DLDAQD12345678\nDBJD87654321\nDABPUBLIC\nDACJOHN\nDADQUINCY\nDAG789 E OAK ST\nDAIANYTOWN\nDAHAPT #4A\nDAJCA\nDAK90223\nDBB19700115\nDBA20350131\nDAU509\nDAW180\nDAZBR\nDAYGRN\nDBC1\nDBHN\nDARD\nDBD20131003\nDBE2013-10-03 00.00.00.000000\nDBIN\nZAZAA7V81\n";
   return rawData;
 }
 
 String emptyLicenseData() {
-  final rawData = "@\n" +
-      "\n" +
-      "ANSI 636026010102DL00410288ZA03290015DLDBJD12345678\n" +
-      "DAA\n" +
-      "DAB\n" +
-      "DAC\n" +
-      "DAD\n" +
-      "DAG\n" +
-      "DAH\n" +
-      "DAI\n" +
-      "DAJ\n" +
-      "DAK\n" +
-      "DBB\n" +
-      "DBA\n" +
-      "DAU\n" +
-      "DAW\n" +
-      "DAZ\n" +
-      "DAY\n" +
-      "DBC\n" +
-      "DBH\n" +
-      "DAR\n" +
-      "DBD\n" +
-      "DBE\n" +
-      "DBI\n" +
-      "Z\n";
+  final rawData =
+      "@\n\nANSI 636026010102DL00410288ZA03290015DLDBJD12345678\nDAA\nDAB\nDAC\nDAD\nDAG\nDAH\nDAI\nDAJ\nDAK\nDBB\nDBA\nDAU\nDAW\nDAZ\nDAY\nDBC\nDBH\nDAR\nDBD\nDBE\nDBI\nZ\n";
   return rawData;
 }
