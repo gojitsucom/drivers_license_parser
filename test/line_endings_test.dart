@@ -8,8 +8,39 @@ void main() {
   group("Line Endings", () {
     group("when the lines are terminated with CR and LF", () {
       test("should correctly parse the document", () {
-        final rawData =
-            "@\r\n\r\nANSI 636026080102DL00410288ZA03290095DLDAQD12345678\r\nDCSPUBLIC\r\nDDEN\r\nDACJOHN\r\nDDFN\r\nDADNONE\r\nDDGN\r\nDCAD\r\nDCBNONE\r\nDCDNONE\r\nDBD08242095\r\nDBB09151970\r\nDBA09312035\r\nDBC1\r\nDAU069 in\r\nDAYGRN\r\nDAG789 E OAK ST\r\nDAHAPT #4A\r\nDAIANYTOWN\r\nDAJCA\r\nDAK902230000  \r\nDCF83D9BN217QO983B1\r\nDCGUSA\r\nDAW180\r\nDAZBRO\r\nDCK12345678900000000000\r\nDDB02142094\r\nDDK1\r\nZAZAAN\r\nZAB\r\nZAC";
+        final rawData = "@\r\n" +
+            "\r\n" +
+            "ANSI 636026080102DL00410288ZA03290095DLDAQD12345678\r\n" +
+            "DCSPUBLIC\r\n" +
+            "DDEN\r\n" +
+            "DACJOHN\r\n" +
+            "DDFN\r\n" +
+            "DADNONE\r\n" +
+            "DDGN\r\n" +
+            "DCAD\r\n" +
+            "DCBNONE\r\n" +
+            "DCDNONE\r\n" +
+            "DBD08242095\r\n" +
+            "DBB09151970\r\n" +
+            "DBA09312035\r\n" +
+            "DBC1\r\n" +
+            "DAU069 in\r\n" +
+            "DAYGRN\r\n" +
+            "DAG789 E OAK ST\r\n" +
+            "DAHAPT #4A\r\n" +
+            "DAIANYTOWN\r\n" +
+            "DAJCA\r\n" +
+            "DAK902230000  \r\n" +
+            "DCF83D9BN217QO983B1\r\n" +
+            "DCGUSA\r\n" +
+            "DAW180\r\n" +
+            "DAZBRO\r\n" +
+            "DCK12345678900000000000\r\n" +
+            "DDB02142094\r\n" +
+            "DDK1\r\n" +
+            "ZAZAAN\r\n" +
+            "ZAB\r\n" +
+            "ZAC";
 
         final result = LicenseParser.parse(rawData);
 
@@ -23,8 +54,7 @@ void main() {
         expect(result.height, 69);
         expect(result.city, "ANYTOWN");
         expect(result.state, "CA");
-        expect(result.postalCode,
-            PostalCode(postalCode: "90223", extension: "0000")); //"902230000"
+        expect(result.postalCode, PostalCode(postalCode: "90223", extension: "0000"));//"902230000"
         expect(result.hairColor, HairColor.brown);
         expect(result.country, IssuingCountry.unitedStates);
         expect(result.customerId, "D12345678");
