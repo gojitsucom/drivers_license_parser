@@ -1,3 +1,7 @@
+## 2.0.0
+- Update to Dart 3
+- Handle expiration dates that appear in the top line of the license data (observed in version 09)
+
 ## 1.2.2
 - Update return null when parsing `NONE` value
 
