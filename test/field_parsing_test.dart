@@ -429,14 +429,23 @@ void main() {
 
         expect(result.expirationDate, isNull);
       });
-    });
-    group("when the expiration date field is missing", () {
       test("should reveal an empty optional date", () {
         final result = LicenseParser.parse("");
 
         expect(result.expirationDate, isNull);
       });
     });
+
+    test(
+      "expiration date is in the top line",
+      () {
+        // we observed some version 09 licenses that have the expiration date in the top line
+        final result = LicenseParser.parse("""@
+
+ANSI 636023090102DL00410325ZO03660057DLDBA01052027""");
+        expect(result.expirationDate, DateTime(2027, 1, 5));
+      },
+    );
   });
 
   group("Parsing the issue date", () {

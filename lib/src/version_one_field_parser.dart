@@ -22,11 +22,10 @@ class VersionOneFieldMapper extends FieldMapper {
 
 class VersionOneFieldParser extends FieldParser {
   VersionOneFieldParser(String data,
-      {required DateFormatLocale dateFormatLocale})
+      {required super.dateFormatLocale})
       : super(
           data: data,
           fieldMapper: VersionOneFieldMapper(),
-          dateFormatLocale: dateFormatLocale,
         );
 
   @override
