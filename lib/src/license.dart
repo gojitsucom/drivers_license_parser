@@ -169,4 +169,44 @@ class License {
     }
     return true;
   }
+
+  @override
+  String toString() {
+    return '''
+License{
+  firstName: $firstName, 
+  lastName: $lastName, 
+  middleName: $middleName, 
+  expirationDate: $expirationDate, 
+  issueDate: $issueDate, 
+  dateOfBirth: $dateOfBirth, 
+  gender: $gender, 
+  eyeColor: $eyeColor, 
+  height: $height, 
+  streetAddress: $streetAddress, 
+  city: $city, 
+  state: $state, 
+  postalCode: $postalCode, 
+  driversLicenseNumber: $driversLicenseNumber, 
+  customerId: $customerId, 
+  uniqueCustomerId: $uniqueCustomerId, 
+  documentId: $documentId, 
+  country: $country, 
+  middleNameTruncation: $middleNameTruncation, 
+  firstNameTruncation: $firstNameTruncation, 
+  lastNameTruncation: $lastNameTruncation, 
+  streetAddressSupplement: $streetAddressSupplement, 
+  hairColor: $hairColor, 
+  placeOfBirth: $placeOfBirth, 
+  auditInformation: $auditInformation, 
+  inventoryControlNumber: $inventoryControlNumber, 
+  lastNameAlias: $lastNameAlias, 
+  firstNameAlias: $firstNameAlias, 
+  suffixAlias: $suffixAlias, 
+  suffix: $suffix, 
+  version: $version, 
+  pdf417: $pdf417
+}
+''';
+  }
 }

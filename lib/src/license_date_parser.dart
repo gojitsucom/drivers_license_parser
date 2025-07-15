@@ -18,6 +18,8 @@ class YearMonthDayLicenseDateParser extends LicenseDateParser {
     if (monthPart != null && dayPart != null && yearPart != null) {
       return DateTime(yearPart, monthPart, dayPart);
     }
+
+    return null;
   }
 }
 
@@ -32,5 +34,7 @@ class MonthDayYearDateParser extends LicenseDateParser {
     if (monthPart != null && dayPart != null && yearPart != null) {
       return DateTime(yearPart, monthPart, dayPart);
     }
+
+    return null;
   }
 }

@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library drivers_license_parser;
+library;
 
 export 'src/enum.dart';
 export 'src/license.dart';

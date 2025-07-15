@@ -48,7 +48,7 @@ class FieldParser {
       data: data,
       matchLineStartOnly: matchLineStartOnly,
     );
-    if(result == 'NONE'){
+    if (result == 'NONE') {
       return null;
     }
     return result;
@@ -70,6 +70,7 @@ class FieldParser {
     if (result != null) {
       return double.tryParse(result);
     }
+    return null;
   }
 
   ///
@@ -132,8 +133,12 @@ class FieldParser {
   /// Parse the AAMVA expiration date out of the raw data
   /// - Returns: An optional value parsed out of the raw data
   ///
+  /// This has been observed in version 09 to be in the top line of the encoded
+  /// data. Therefore, if it is not matched normally, then try to match it anywhere.
+  ///
   DateTime? parseExpirationDate() {
-    return parseDate(FieldMapper.expirationDate);
+    return parseDate(FieldMapper.expirationDate) ??
+        parseDate(FieldMapper.expirationDate, matchLineStartOnly: false);
   }
 
   ///
@@ -355,5 +360,7 @@ class FieldParser {
         return PostalCode(postalCode: postalCodeString);
       }
     }
+
+    return null;
   }
 }
